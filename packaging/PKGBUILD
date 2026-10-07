@@ -1,0 +1,21 @@
+# Maintainer: openOODA-tools <ops@openooda.org>
+pkgname=oosdiff-bin
+_pkgname=oosdiff
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Side-by-side visual diff tool rendering interactive split terminals with sync scroll."
+arch=('x86_64')
+url="https://github.com/openOODA-tools/oosdiff"
+license=('Apache-2.0')
+depends=('glibc')
+provides=('oosdiff')
+conflicts=('oosdiff')
+source_x86_64=("${url}/releases/download/v${pkgver}/oosdiff-linux-x86_64"
+               "uninstall.sh::https://raw.githubusercontent.com/openOODA-tools/${_pkgname}/v${pkgver}/uninstall.sh")
+sha256sums_x86_64=('SKIP'
+                   'SKIP')
+
+package() {
+    install -Dm755 "${srcdir}/oosdiff-linux-x86_64" "${pkgdir}/usr/bin/oosdiff"
+    install -Dm755 uninstall.sh "${pkgdir}/usr/bin/oosdiff-uninstall"
+}
